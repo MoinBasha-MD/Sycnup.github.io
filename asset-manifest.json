@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/syncup_web_react/static/css/main.85254214.css",
-    "main.js": "/syncup_web_react/static/js/main.e812b4a2.js",
-    "static/js/453.a73ea655.chunk.js": "/syncup_web_react/static/js/453.a73ea655.chunk.js",
-    "index.html": "/syncup_web_react/index.html",
-    "main.85254214.css.map": "/syncup_web_react/static/css/main.85254214.css.map",
-    "main.e812b4a2.js.map": "/syncup_web_react/static/js/main.e812b4a2.js.map",
-    "453.a73ea655.chunk.js.map": "/syncup_web_react/static/js/453.a73ea655.chunk.js.map"
+    "main.css": "/Sycnup.github.io/static/css/main.85254214.css",
+    "main.js": "/Sycnup.github.io/static/js/main.a2da9e4a.js",
+    "static/js/453.a73ea655.chunk.js": "/Sycnup.github.io/static/js/453.a73ea655.chunk.js",
+    "index.html": "/Sycnup.github.io/index.html",
+    "main.85254214.css.map": "/Sycnup.github.io/static/css/main.85254214.css.map",
+    "main.a2da9e4a.js.map": "/Sycnup.github.io/static/js/main.a2da9e4a.js.map",
+    "453.a73ea655.chunk.js.map": "/Sycnup.github.io/static/js/453.a73ea655.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.85254214.css",
-    "static/js/main.e812b4a2.js"
+    "static/js/main.a2da9e4a.js"
   ]
 }
