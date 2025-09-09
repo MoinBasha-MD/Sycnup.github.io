@@ -19,64 +19,68 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-out-cubic',
-      once: true,
-      offset: 100
-    });
+    // Initialize AOS with error handling
+    try {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 100
+      });
+    } catch (error) {
+      console.warn('AOS initialization failed:', error);
+    }
 
-    // Smooth sequential typing animation - Syncup first, then tagline
+    // Enhanced typing animation with mobile compatibility
     const syncupText = "Syncup";
     const taglineText = "One Life, One Rhythm, One Sync";
     
     let syncupIndex = 0;
     let taglineIndex = 0;
     let syncupComplete = false;
-    let isTyping = false;
+    let animationTimeout;
     
     const typeSequential = () => {
-      const syncupElement = document.getElementById('syncup-text');
-      const taglineElement = document.getElementById('tagline-text');
-      
-      if (!syncupElement || !taglineElement) {
-        setTimeout(typeSequential, 100);
-        return;
-      }
-      
-      if (!syncupComplete) {
-        // Type Syncup first with smooth animation
-        if (syncupIndex <= syncupText.length) {
-          syncupElement.textContent = syncupText.substring(0, syncupIndex);
-          isTyping = syncupIndex < syncupText.length;
-          syncupIndex++;
-          
-          // Variable speed for more natural typing
-          const delay = Math.random() * 50 + 80; // 80-130ms random delay
-          setTimeout(typeSequential, delay);
-        } else {
-          syncupComplete = true;
-          isTyping = false;
-          setTimeout(typeSequential, 800); // Longer pause before tagline
+      try {
+        const syncupElement = document.getElementById('syncup-text');
+        const taglineElement = document.getElementById('tagline-text');
+        
+        if (!syncupElement || !taglineElement) {
+          animationTimeout = setTimeout(typeSequential, 100);
+          return;
         }
-      } else {
-        // Type tagline after Syncup is complete
-        if (taglineIndex <= taglineText.length) {
-          taglineElement.textContent = taglineText.substring(0, taglineIndex);
-          isTyping = taglineIndex < taglineText.length;
-          taglineIndex++;
-          
-          // Slightly faster for tagline
-          const delay = Math.random() * 40 + 60; // 60-100ms random delay
-          setTimeout(typeSequential, delay);
+        
+        if (!syncupComplete) {
+          if (syncupIndex <= syncupText.length) {
+            syncupElement.textContent = syncupText.substring(0, syncupIndex);
+            syncupIndex++;
+            const delay = Math.random() * 50 + 80;
+            animationTimeout = setTimeout(typeSequential, delay);
+          } else {
+            syncupComplete = true;
+            animationTimeout = setTimeout(typeSequential, 800);
+          }
         } else {
-          isTyping = false;
+          if (taglineIndex <= taglineText.length) {
+            taglineElement.textContent = taglineText.substring(0, taglineIndex);
+            taglineIndex++;
+            const delay = Math.random() * 40 + 60;
+            animationTimeout = setTimeout(typeSequential, delay);
+          }
         }
+      } catch (error) {
+        console.warn('Typing animation error:', error);
       }
     };
     
-    // Start typing animation after a short delay
-    setTimeout(typeSequential, 1500);
+    // Start animation with delay
+    const startTimeout = setTimeout(typeSequential, 1500);
+    
+    // Cleanup function
+    return () => {
+      if (startTimeout) clearTimeout(startTimeout);
+      if (animationTimeout) clearTimeout(animationTimeout);
+    };
   }, []);
 
   return (
@@ -108,203 +112,176 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="section-elegant bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[80vh]">
-          {/* Typing Animation - Responsive */}
-          <div className="absolute top-16 right-2 sm:top-20 sm:right-4 lg:top-24 lg:right-8 z-50 bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 shadow-xl border border-blue-200 w-[280px] sm:w-[320px] lg:w-[400px] hidden sm:block">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-3">
-                <span id="syncup-text" className="text-blue-600"></span>
-              </div>
-              <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-medium h-8 sm:h-10 lg:h-12 flex items-center justify-center">
-                <span id="tagline-text" className="text-gray-700 whitespace-nowrap"></span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
-            <div className="text-center mb-12" data-aos="fade-up">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-6">
+      <section className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{animationDelay: '4s'}}></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[90vh]">
+            {/* Left Content */}
+            <div className="text-center lg:text-left" data-aos="fade-up">
+              {/* Badge */}
+              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 rounded-full text-sm font-semibold mb-8 shadow-sm">
                 <Star className="w-4 h-4 mr-2" />
                 Now Available on iOS & Android
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 text-hero">
-                Sync Your <span className="gradient-text">Entire Life</span>
+              
+              {/* Main Heading */}
+              <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
+                Sync Your{' '}
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  Entire Life
+                </span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Experience seamless coordination between your professional commitments and personal moments. Whether you're attending office meetings, catching flights at the airport, enjoying cinema nights with loved ones, or planning vacation getaways - Syncup's intelligent communication platform ensures every aspect of your life stays perfectly synchronized.
+              
+              {/* Subtitle */}
+              <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Experience seamless coordination between your professional commitments and personal moments with AI-powered intelligence.
               </p>
               
-              {/* Key Benefits */}
-              <div className="grid md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                    <Clock className="w-6 h-6 text-white" />
+              {/* Key Features */}
+              <div className="grid md:grid-cols-3 gap-6 mb-10">
+                <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Clock className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Smart Time Management</h3>
-                  <p className="text-sm text-gray-600">Automatically coordinate schedules across work meetings, personal appointments, and leisure activities</p>
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Smart Time Management</h3>
+                  <p className="text-gray-600 leading-relaxed">Automatically coordinate schedules across work meetings, personal appointments, and leisure activities</p>
                 </div>
                 
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                    <Heart className="w-6 h-6 text-white" />
+                <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Heart className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Work-Life Balance</h3>
-                  <p className="text-sm text-gray-600">Seamlessly blend professional responsibilities with personal commitments for a harmonious lifestyle</p>
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Work-Life Balance</h3>
+                  <p className="text-gray-600 leading-relaxed">Seamlessly blend professional responsibilities with personal commitments for a harmonious lifestyle</p>
                 </div>
                 
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                    <Brain className="w-6 h-6 text-white" />
+                <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Brain className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">AI-Powered Intelligence</h3>
-                  <p className="text-sm text-gray-600">DIYA AI learns your patterns and proactively manages communications across all life contexts</p>
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">AI-Powered Intelligence</h3>
+                  <p className="text-gray-600 leading-relaxed">DIYA AI learns your patterns and proactively manages communications across all life contexts</p>
                 </div>
               </div>
 
-              {/* Enhanced Features List */}
-              <div className="bg-white/30 backdrop-blur-sm rounded-2xl p-6 mb-8 max-w-4xl mx-auto border border-white/20">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">What Makes Syncup Different</h3>
-                <div className="grid md:grid-cols-2 gap-4 text-left">
-                  <div className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-gray-900">Complete Life Integration</div>
-                      <div className="text-sm text-gray-600">Manage work calls, family dinners, travel plans, and social events in one unified platform</div>
-                    </div>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                <button className="group relative bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center justify-center">
+                    <Download className="w-5 h-5 mr-3" />
+                    Download for iOS
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-gray-900">Intelligent Context Awareness</div>
-                      <div className="text-sm text-gray-600">DIYA understands whether you're in a business meeting or at a movie theater and responds appropriately</div>
-                    </div>
+                </button>
+                <button className="group bg-white text-gray-900 px-8 py-4 rounded-2xl font-semibold text-lg border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center justify-center">
+                    <Smartphone className="w-5 h-5 mr-3 text-gray-600 group-hover:text-gray-900 transition-colors" />
+                    Get on Android
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-gray-900">Real-Time Status Sharing</div>
-                      <div className="text-sm text-gray-600">Automatically update your availability whether you're driving, shopping, on vacation, or in the office</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-gray-900">Cross-Platform Synchronization</div>
-                      <div className="text-sm text-gray-600">Seamlessly coordinate across mobile, desktop, and web platforms for consistent communication</div>
-                    </div>
-                  </div>
+                </button>
+              </div>
+              
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-gray-500">
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 text-green-500 mr-2" />
+                  Free forever plan
                 </div>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="btn-primary btn-elegant text-lg px-10 py-4 text-refined">
-                  <Download className="w-5 h-5 mr-3 inline" />
-                  Download for iOS
-                </button>
-                <button className="btn-secondary text-lg px-10 py-4 text-refined micro-bounce">
-                  <Smartphone className="w-5 h-5 mr-3 inline" />
-                  Get on Android
-                </button>
-              </div>
-              
-              <div className="mt-6 text-sm text-gray-500">
-                ✓ Free forever plan available  ✓ No credit card required  ✓ 14-day premium trial  ✓ Cancel anytime
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 text-green-500 mr-2" />
+                  No credit card required
+                </div>
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 text-green-500 mr-2" />
+                  14-day premium trial
+                </div>
               </div>
             </div>
+            
+            {/* Right Content - Interactive Demo */}
             <div className="relative" data-aos="fade-left">
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full opacity-20 animate-pulse"></div>
+              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+              
               <div className="relative z-10">
-                <div className="modern-card p-8 shadow-xl">
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-4 mb-6">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center icon-float">
-                        <MessageCircle className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <div className="font-bold text-lg text-refined">DIYA AI Assistant</div>
-                        <div className="text-sm text-gray-500 font-medium">Smart conversation scenarios</div>
-                      </div>
+                {/* Typing Animation Card */}
+                <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 mb-6 shadow-2xl border border-gray-200/50">
+                  <div className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold mb-3">
+                      <span id="syncup-text" className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"></span>
                     </div>
-                    
-                    {/* Chat Messages */}
-                    <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-4 border border-gray-100 max-h-80 overflow-y-auto">
-                      <div className="space-y-3">
-                        {/* User starts conversation */}
-                        <div className="flex justify-end">
-                          <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl rounded-br-md max-w-xs">
-                            <div className="text-sm">Hi DIYA! 👋</div>
-                          </div>
-                        </div>
-                        
-                        {/* DIYA responds */}
-                        <div className="flex justify-start">
-                          <div className="bg-white text-gray-800 px-4 py-2 rounded-2xl rounded-bl-md max-w-xs border border-gray-200">
-                            <div className="text-sm">Hello! I'm here to help you coordinate with your team. What would you like to do?</div>
-                          </div>
-                        </div>
-                        
-                        {/* User asks about availability */}
-                        <div className="flex justify-end">
-                          <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl rounded-br-md max-w-xs">
-                            <div className="text-sm">@sarah free for dinner after her movie?</div>
-                          </div>
-                        </div>
-                        
-                        {/* DIYA checks and responds */}
-                        <div className="flex justify-start">
-                          <div className="bg-white text-gray-800 px-4 py-2 rounded-2xl rounded-bl-md max-w-xs border border-gray-200">
-                            <div className="text-sm">Sarah's movie ends at 10 PM. She's free after that and loves late-night dining! I'll let her know. 🍽️</div>
-                          </div>
-                        </div>
-                        
-                        {/* User wants to set status */}
-                        <div className="flex justify-end">
-                          <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl rounded-br-md max-w-xs">
-                            <div className="text-sm">Set my status to "At airport" until 8 PM</div>
-                          </div>
-                        </div>
-                        
-                        {/* DIYA confirms */}
-                        <div className="flex justify-start">
-                          <div className="bg-white text-gray-800 px-4 py-2 rounded-2xl rounded-bl-md max-w-xs border border-gray-200">
-                            <div className="text-sm">✅ Status updated! I'll handle work calls and let everyone know you're traveling until 8 PM. ✈️</div>
-                          </div>
-                        </div>
-                        
-                        {/* User asks about team */}
-                        <div className="flex justify-end">
-                          <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl rounded-br-md max-w-xs">
-                            <div className="text-sm">Who can join weekend beach trip?</div>
-                          </div>
-                        </div>
-                        
-                        {/* DIYA provides team status */}
-                        <div className="flex justify-start">
-                          <div className="bg-white text-gray-800 px-4 py-2 rounded-2xl rounded-bl-md max-w-xs border border-gray-200">
-                            <div className="text-sm">Mike is free this weekend! Emma has family plans. Alex is already on vacation in Hawaii. Should I create a group chat? 🏖️</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Interactive buttons */}
-                    <div className="flex gap-2 flex-wrap">
-                      <button className="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full hover:bg-blue-200 transition-colors">
-                        Try: "Going to airport"
-                      </button>
-                      <button className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full hover:bg-green-200 transition-colors">
-                        Try: "Movie night plans?"
-                      </button>
-                      <button className="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full hover:bg-purple-200 transition-colors">
-                        Try: "Weekend vacation?"
-                      </button>
+                    <div className="text-lg font-medium text-gray-600">
+                      <span id="tagline-text"></span>
                     </div>
                   </div>
                 </div>
+                
+                {/* AI Demo Card */}
+                <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <MessageCircle className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-xl text-gray-900">DIYA AI Assistant</div>
+                      <div className="text-gray-500 font-medium">Smart conversation scenarios</div>
+                    </div>
+                  </div>
+                  
+                  {/* Chat Interface */}
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 border border-gray-100 max-h-80 overflow-y-auto">
+                    <div className="space-y-4">
+                      {/* User Message */}
+                      <div className="flex justify-end">
+                        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-5 py-3 rounded-2xl rounded-br-md max-w-xs shadow-md">
+                          <div className="text-sm font-medium">Hi DIYA! 👋</div>
+                        </div>
+                      </div>
+                      
+                      {/* AI Response */}
+                      <div className="flex justify-start">
+                        <div className="bg-white text-gray-800 px-5 py-3 rounded-2xl rounded-bl-md max-w-xs border border-gray-200 shadow-sm">
+                          <div className="text-sm">Hello! I'm here to help you coordinate with your team. What would you like to do?</div>
+                        </div>
+                      </div>
+                      
+                      {/* User Query */}
+                      <div className="flex justify-end">
+                        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-5 py-3 rounded-2xl rounded-br-md max-w-xs shadow-md">
+                          <div className="text-sm font-medium">@sarah free for dinner after her movie?</div>
+                        </div>
+                      </div>
+                      
+                      {/* AI Smart Response */}
+                      <div className="flex justify-start">
+                        <div className="bg-white text-gray-800 px-5 py-3 rounded-2xl rounded-bl-md max-w-xs border border-gray-200 shadow-sm">
+                          <div className="text-sm">Sarah's movie ends at 10 PM. She's free after that and loves late-night dining! I'll let her know. 🍽️</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Quick Action Buttons */}
+                  <div className="flex gap-2 flex-wrap mt-4">
+                    <button className="text-xs bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 px-4 py-2 rounded-full hover:from-blue-200 hover:to-indigo-200 transition-all duration-200 font-medium shadow-sm">
+                      "Going to airport"
+                    </button>
+                    <button className="text-xs bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 px-4 py-2 rounded-full hover:from-green-200 hover:to-emerald-200 transition-all duration-200 font-medium shadow-sm">
+                      "Movie night plans?"
+                    </button>
+                    <button className="text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 rounded-full hover:from-purple-200 hover:to-pink-200 transition-all duration-200 font-medium shadow-sm">
+                      "Weekend vacation?"
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full pulse-subtle"></div>
-              <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full pulse-subtle" style={{animationDelay: '1s'}}></div>
-              <div className="absolute top-1/3 -right-8 w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full pulse-subtle" style={{animationDelay: '2s'}}></div>
             </div>
           </div>
         </div>
