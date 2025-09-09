@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/MoinBasha-MD/Sycnup.github.io.git/static/css/main.41831931.css",
-    "main.js": "/MoinBasha-MD/Sycnup.github.io.git/static/js/main.7eb7f690.js",
-    "static/js/453.a73ea655.chunk.js": "/MoinBasha-MD/Sycnup.github.io.git/static/js/453.a73ea655.chunk.js",
-    "index.html": "/MoinBasha-MD/Sycnup.github.io.git/index.html",
-    "main.41831931.css.map": "/MoinBasha-MD/Sycnup.github.io.git/static/css/main.41831931.css.map",
-    "main.7eb7f690.js.map": "/MoinBasha-MD/Sycnup.github.io.git/static/js/main.7eb7f690.js.map",
-    "453.a73ea655.chunk.js.map": "/MoinBasha-MD/Sycnup.github.io.git/static/js/453.a73ea655.chunk.js.map"
+    "main.css": "/MoinBasha-MD/Sycnup.github.io/static/css/main.41831931.css",
+    "main.js": "/MoinBasha-MD/Sycnup.github.io/static/js/main.368ddb8c.js",
+    "static/js/453.a73ea655.chunk.js": "/MoinBasha-MD/Sycnup.github.io/static/js/453.a73ea655.chunk.js",
+    "index.html": "/MoinBasha-MD/Sycnup.github.io/index.html",
+    "main.41831931.css.map": "/MoinBasha-MD/Sycnup.github.io/static/css/main.41831931.css.map",
+    "main.368ddb8c.js.map": "/MoinBasha-MD/Sycnup.github.io/static/js/main.368ddb8c.js.map",
+    "453.a73ea655.chunk.js.map": "/MoinBasha-MD/Sycnup.github.io/static/js/453.a73ea655.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41831931.css",
-    "static/js/main.7eb7f690.js"
+    "static/js/main.368ddb8c.js"
   ]
 }
