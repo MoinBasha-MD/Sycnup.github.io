@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.41831931.css",
-    "main.js": "/static/js/main.b46501d7.js",
-    "static/js/453.a73ea655.chunk.js": "/static/js/453.a73ea655.chunk.js",
-    "index.html": "/index.html",
-    "main.41831931.css.map": "/static/css/main.41831931.css.map",
-    "main.b46501d7.js.map": "/static/js/main.b46501d7.js.map",
-    "453.a73ea655.chunk.js.map": "/static/js/453.a73ea655.chunk.js.map"
+    "main.css": "/Sycnup.github.io/static/css/main.41831931.css",
+    "main.js": "/Sycnup.github.io/static/js/main.c89933a6.js",
+    "static/js/453.a73ea655.chunk.js": "/Sycnup.github.io/static/js/453.a73ea655.chunk.js",
+    "index.html": "/Sycnup.github.io/index.html",
+    "main.41831931.css.map": "/Sycnup.github.io/static/css/main.41831931.css.map",
+    "main.c89933a6.js.map": "/Sycnup.github.io/static/js/main.c89933a6.js.map",
+    "453.a73ea655.chunk.js.map": "/Sycnup.github.io/static/js/453.a73ea655.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41831931.css",
-    "static/js/main.b46501d7.js"
+    "static/js/main.c89933a6.js"
   ]
 }
