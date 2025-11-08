@@ -9,7 +9,7 @@ const ScenariosSection = () => {
       title: 'Meeting Coordination',
       subtitle: 'Team scheduling made effortless',
       without: 'Send multiple messages, wait for replies, endless back-and-forth scheduling, 20 minutes wasted',
-      with: '@team when can we meet? DIYA instantly shows everyone\'s availability and suggests optimal times',
+      with: '@team when can we meet? Maya (upcoming) instantly shows everyone\'s availability and suggests optimal times',
       timeSaved: '18 min',
       delay: 0
     },
@@ -19,7 +19,7 @@ const ScenariosSection = () => {
       title: 'Social Plans',
       subtitle: 'Never interrupt friends again',
       without: 'Call at the wrong time, interrupt important moments, feel guilty, miss social opportunities',
-      with: '@sarah coffee later? DIYA: "Sarah is free after 4 PM and loves coffee dates!"',
+      with: '@sarah coffee later? Maya (upcoming): "Sarah is free after 4 PM and loves coffee dates!"',
       timeSaved: '15 min',
       delay: 100
     },
@@ -29,7 +29,7 @@ const ScenariosSection = () => {
       title: 'Work Collaboration',
       subtitle: 'Respect focus time',
       without: 'Interrupt focused work sessions, break concentration, reduce team productivity, create unnecessary stress',
-      with: '@john quick question? DIYA: "John is in focus mode until 3 PM. I\'ll notify him!"',
+      with: '@john quick question? Maya (upcoming): "John is in focus mode until 3 PM. I\'ll notify him!"',
       timeSaved: '45 min',
       delay: 200
     }

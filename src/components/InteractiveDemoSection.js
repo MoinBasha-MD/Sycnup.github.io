@@ -5,8 +5,8 @@ const InteractiveDemoSection = () => {
   const [demoMessages, setDemoMessages] = useState([
     {
       id: 1,
-      sender: 'diya',
-      text: "Hi! I'm DIYA, your AI assistant. Try asking about someone's availability!",
+      sender: 'maya',
+      text: "Hi! I'm Maya, the upcoming AI assistant. Try asking about someone's availability!",
       time: '10:00 AM'
     }
   ]);
@@ -55,12 +55,12 @@ const InteractiveDemoSection = () => {
     if (pendingResponse) return;
 
     const demoQueries = [
-      { user: '@sarah free for lunch?', diya: 'Sarah is available after 1 PM and loves trying new restaurants!' },
-      { user: '@team meeting at 3?', diya: 'Mike and Alex are free, but Sarah has a client call. How about 4 PM?' },
-      { user: '@john quick question?', diya: 'John is in deep focus mode until 5 PM. I\'ll notify him when he\'s available!' },
-      { user: '@emma coffee break?', diya: 'Emma just finished her meeting and would love a coffee break right now!' },
-      { user: '@alex available now?', diya: 'Alex is wrapping up a call and will be free in 10 minutes!' },
-      { user: '@team standup ready?', diya: 'Everyone is online and ready for the standup meeting!' }
+      { user: '@sarah free for lunch?', maya: 'Sarah is available after 1 PM and loves trying new restaurants!' },
+      { user: '@team meeting at 3?', maya: 'Mike and Alex are free, but Sarah has a client call. How about 4 PM?' },
+      { user: '@john quick question?', maya: 'John is in deep focus mode until 5 PM. I\'ll notify him when he\'s available!' },
+      { user: '@emma coffee break?', maya: 'Emma just finished her meeting and would love a coffee break right now!' },
+      { user: '@alex available now?', maya: 'Alex is wrapping up a call and will be free in 10 minutes!' },
+      { user: '@team standup ready?', maya: 'Everyone is online and ready for the standup meeting!' }
     ];
     
     const randomQuery = demoQueries[Math.floor(Math.random() * demoQueries.length)];
@@ -80,8 +80,8 @@ const InteractiveDemoSection = () => {
       const diyaMessageId = Date.now() + 1;
       setDemoMessages(prev => [...prev, {
         id: diyaMessageId,
-        sender: 'diya',
-        text: randomQuery.diya,
+        sender: 'maya',
+        text: randomQuery.maya + ' (Maya AI coming soon)',
         time: currentTime
       }]);
       
@@ -101,8 +101,8 @@ const InteractiveDemoSection = () => {
     setDemoMessages([
       {
         id: 1,
-        sender: 'diya',
-        text: "Hi! I'm DIYA, your AI assistant. Try asking about someone's availability!",
+        sender: 'maya',
+        text: "Hi! I'm Maya, the upcoming AI assistant. Try asking about someone's availability!",
         time: '10:00 AM'
       }
     ]);
@@ -113,10 +113,10 @@ const InteractiveDemoSection = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12" data-aos="fade-up">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Try DIYA AI Assistant
+            Try Maya AI Assistant (Preview)
           </h2>
           <p className="text-xl text-gray-600">
-            Experience how DIYA handles availability requests intelligently
+            Experience how Maya will handle availability requests intelligently when launched
           </p>
         </div>
 
@@ -125,7 +125,7 @@ const InteractiveDemoSection = () => {
             <div>
               <h3 className="text-xl font-bold mb-6 flex items-center text-refined">
                 <MessageCircle className="w-6 h-6 text-blue-600 mr-3 icon-float" />
-                Chat with DIYA
+                Chat with Maya (Upcoming)
               </h3>
               <div className="space-y-4 h-80 overflow-y-auto bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 border border-gray-100">
                 {demoMessages.map((message) => (
@@ -154,7 +154,7 @@ const InteractiveDemoSection = () => {
                     pendingResponse ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                 >
-                  {pendingResponse ? 'DIYA is typing...' : 'Try Demo Message'}
+                  {pendingResponse ? 'Maya is typing...' : 'Try Demo Message'}
                 </button>
                 <button onClick={resetDemo} className="btn-secondary text-sm px-6 py-3 micro-bounce">
                   Reset

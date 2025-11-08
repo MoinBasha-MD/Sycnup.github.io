@@ -5,8 +5,8 @@ const FAQSection = () => {
   const [faqs, setFaqs] = useState([
     {
       id: 1,
-      question: 'How does DIYA AI protect my privacy?',
-      answer: 'DIYA AI operates with strict privacy controls. You can set granular permissions for who can ask about your availability, and DIYA only shares information you\'ve explicitly allowed. All data is encrypted end-to-end.',
+      question: 'How will Maya AI protect my privacy?',
+      answer: 'Maya AI will operate with strict privacy controls. You can set granular permissions for who can ask about your availability, and Maya will only share information you\'ve explicitly allowed. All data is encrypted end-to-end.',
       isOpen: false,
       delay: 0
     },
@@ -34,7 +34,7 @@ const FAQSection = () => {
     {
       id: 5,
       question: 'How does the @mention system work?',
-      answer: 'Simply type @username in any conversation, and DIYA will intelligently check their availability and respond on their behalf based on their current status and privacy settings. It\'s like having a personal assistant for everyone.',
+      answer: 'Simply type @username in any conversation, and Maya (coming soon) will intelligently check their availability and respond on their behalf based on their current status and privacy settings. It\'s like having a personal assistant for everyone.',
       isOpen: false,
       delay: 400
     }

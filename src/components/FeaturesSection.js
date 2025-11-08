@@ -6,8 +6,8 @@ const FeaturesSection = () => {
     {
       id: 1,
       icon: Brain,
-      title: 'DIYA AI Assistant',
-      description: 'Ask about anyone\'s availability with simple @mentions. DIYA intelligently handles requests while respecting privacy and boundaries.',
+      title: 'Maya AI Assistant (Upcoming)',
+      description: 'Ask about anyone\'s availability with simple @mentions. Maya will intelligently handle requests while respecting privacy and boundaries.',
       benefits: ['Save time', 'Reduce interruptions', 'Smart coordination'],
       delay: 0
     },
