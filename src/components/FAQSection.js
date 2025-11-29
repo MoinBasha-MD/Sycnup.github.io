@@ -5,8 +5,8 @@ const FAQSection = () => {
   const [faqs, setFaqs] = useState([
     {
       id: 1,
-      question: 'How will Maya AI protect my privacy?',
-      answer: 'Maya AI will operate with strict privacy controls. You can set granular permissions for who can ask about your availability, and Maya will only share information you\'ve explicitly allowed. All data is encrypted end-to-end.',
+      question: 'How does SyncUp protect my privacy?',
+      answer: 'SyncUp operates with strict privacy controls. You can set granular permissions for who can see your status and location. All data is encrypted end-to-end, and you have complete control over what you share.',
       isOpen: false,
       delay: 0
     },
@@ -33,8 +33,8 @@ const FAQSection = () => {
     },
     {
       id: 5,
-      question: 'How does the @mention system work?',
-      answer: 'Simply type @username in any conversation, and Maya (coming soon) will intelligently check their availability and respond on their behalf based on their current status and privacy settings. It\'s like having a personal assistant for everyone.',
+      question: 'How does real-time status work?',
+      answer: 'Simply set your status (driving, meeting, free, etc.) and your friends see it instantly. They know when to reach you and when to wait. You can also auto-detect activities like driving for added safety.',
       isOpen: false,
       delay: 400
     }

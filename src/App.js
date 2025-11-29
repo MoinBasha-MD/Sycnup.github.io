@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { 
   Menu, X, Star, Download, Smartphone, Clock, Users, Brain, 
   MessageCircle, Calendar, MapPin, Zap, Shield, Heart, 
-  Check, Building, TrendingUp, Globe, ArrowLeft, ArrowRight
+  Check, ChevronDown, Play, Pause, Volume2, VolumeX,
+  Hexagon, Building, TrendingUp, Globe
 } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -13,84 +14,9 @@ import LiveDashboardDemo from './components/LiveDashboardDemo';
 import AppShowcaseSection from './components/AppShowcaseSection';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
-import StatusAutomationSection from './components/StatusAutomationSection';
-import LocationIntelligenceSection from './components/LocationIntelligenceSection';
-import MessagingExperienceSection from './components/MessagingExperienceSection';
-import SocialContentSection from './components/SocialContentSection';
-import UpcomingAISection from './components/UpcomingAISection';
-import PlatformTrustSection from './components/PlatformTrustSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import SyncupLogo from './assets/syncup-logo.svg';
-
-const HERO_STORIES = [
-  {
-    id: 'aisha',
-    title: 'When chaos finally listened',
-    persona: 'Aisha · Emergency surgeon & founder',
-    story:
-      "Aisha used to sprint between trauma calls, family check-ins, and investor pitches. After she moved her life into Syncup, her sister could see when she was in surgery, her co-founders saw focus time instead of silence, and Maya's upcoming intelligence started preparing meeting proposals before she even asked.",
-    takeaway: 'Aisha still works impossible hours—but now she feels seen, respected, and in control.',
-    emotion: 'From overwhelmed → anchored'
-  },
-  {
-    id: 'dev',
-    title: 'Respecting focus without saying a word',
-    persona: 'Dev · Remote engineering lead & new dad',
-    story:
-      "Dev was juggling sprint planning at midnight and bottle feeds at dawn. Syncup let his team see his focus blocks, auto-snoozed pings during nap time, and drafted gentle follow-ups for clients in different time zones.",
-    takeaway: 'He gets to be present for first steps without missing a single launch.',
-    emotion: 'From guilt → confident balance'
-  },
-  {
-    id: 'sofia',
-    title: 'Turning silence into reassurance',
-    persona: 'Sofia · College senior & caregiver',
-    story:
-      "Sofia was terrified every time her phone died during hospital visits with her dad. Syncup shared silent mode updates with friends, auto-posted status changes for her study group, and queued Maya reminders for medication pickups.",
-    takeaway: 'Now everyone knows she is safe, even when she can’t reply.',
-    emotion: 'From anxious → supported'
-  },
-  {
-    id: 'amir',
-    title: 'Creating while always on the move',
-    persona: 'Amir · Documentary photographer',
-    story:
-      "Amir spends weeks offline capturing climate stories. Syncup logs the locations he marks, shares respectful updates with collaborators, and Maya (upcoming) drafts follow-up agreements the moment he reconnects.",
-    takeaway: 'His team stays synced across continents without chasing him.',
-    emotion: 'From disconnected → orchestrated'
-  },
-  {
-    id: 'lina',
-    title: 'Keeping a community humming',
-    persona: 'Lina · Neighborhood responder & organizer',
-    story:
-      "Lina coordinates volunteers, donations, and rapid alerts. Syncup routes urgent requests to whoever is free, schedules supply drops around real availability, and soon Maya will negotiate with local vendors automatically.",
-    takeaway: 'Her neighborhood feels the rhythm of collective care.',
-    emotion: 'From reactive → empowered'
-  }
-];
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeStory, setActiveStory] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStory((prev) => (prev + 1) % HERO_STORIES.length);
-    }, 9000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const goToNextStory = () => {
-    setActiveStory((prev) => (prev + 1) % HERO_STORIES.length);
-  };
-
-  const goToPrevStory = () => {
-    setActiveStory((prev) => (prev - 1 + HERO_STORIES.length) % HERO_STORIES.length);
-  };
-
-  const currentStory = HERO_STORIES[activeStory];
 
   useEffect(() => {
     // Initialize AOS with error handling
@@ -164,8 +90,8 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center micro-bounce bg-white shadow-lg">
-                <img src={SyncupLogo} alt="Syncup logo" className="w-8 h-8" />
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center micro-bounce">
+                <Hexagon className="w-6 h-6 text-white" />
               </div>
               <div>
                 <span className="text-xl font-bold text-refined gradient-text">Syncup</span>
@@ -173,11 +99,9 @@ function App() {
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#status-automation" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">Status</a>
-              <a href="#location" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">Map</a>
-              <a href="#messaging" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">Messaging</a>
-              <a href="#content" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">Social</a>
-              <a href="#ai-roadmap" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">AI (Upcoming)</a>
+              <a href="#features" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">Features</a>
+              <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">How It Works</a>
+              <a href="#faq" className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium">FAQ</a>
               <button className="btn-primary btn-elegant">Download Now</button>
             </div>
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden micro-bounce">
@@ -216,25 +140,9 @@ function App() {
               
               {/* Subtitle */}
               <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Experience seamless coordination between your professional commitments and personal moments with AI-powered intelligence.
+                Real-time status sharing, location intelligence, and seamless communication that keeps you connected AND protected.
               </p>
-
-              {/* Confidence Boosters */}
-              <div className="grid sm:grid-cols-3 gap-4 mb-10" data-aos="fade-up" data-aos-delay="100">
-                <div className="flex items-center gap-3 bg-white/70 border border-gray-100 rounded-2xl px-4 py-3 shadow-sm">
-                  <Shield className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium text-gray-700">Privacy-first architecture & end-to-end protection</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/70 border border-gray-100 rounded-2xl px-4 py-3 shadow-sm">
-                  <Users className="w-5 h-5 text-purple-600" />
-                  <span className="text-sm font-medium text-gray-700">Designed with families, founders, and frontline teams</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/70 border border-gray-100 rounded-2xl px-4 py-3 shadow-sm">
-                  <Zap className="w-5 h-5 text-amber-500" />
-                  <span className="text-sm font-medium text-gray-700">Real-time sync that keeps promises—no matter the chaos</span>
-                </div>
-              </div>
-
+              
               {/* Key Features */}
               <div className="grid md:grid-cols-3 gap-6 mb-10">
                 <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -255,10 +163,10 @@ function App() {
                 
                 <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                   <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Brain className="w-7 h-7 text-white" />
+                    <MapPin className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">AI-Powered Intelligence</h3>
-                  <p className="text-gray-600 leading-relaxed">Maya AI (upcoming) learns your patterns and proactively manages communications across all life contexts</p>
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Location Intelligence</h3>
+                  <p className="text-gray-600 leading-relaxed">See where friends are in real-time, get nearby alerts, and never miss spontaneous meetups</p>
                 </div>
               </div>
 
@@ -271,16 +179,20 @@ function App() {
                     Download for iOS
                   </div>
                 </button>
-                <div className="group bg-white text-gray-900 px-8 py-4 rounded-2xl font-semibold text-lg border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <button className="group bg-white text-gray-900 px-8 py-4 rounded-2xl font-semibold text-lg border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                   <div className="flex items-center justify-center">
                     <Smartphone className="w-5 h-5 mr-3 text-gray-600 group-hover:text-gray-900 transition-colors" />
                     Get on Android
                   </div>
-                </div>
+                </button>
               </div>
               
               {/* Trust Indicators */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-gray-500">
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 text-green-500 mr-2" />
+                  Free forever plan
+                </div>
                 <div className="flex items-center">
                   <Check className="w-4 h-4 text-green-500 mr-2" />
                   No credit card required
@@ -288,10 +200,6 @@ function App() {
                 <div className="flex items-center">
                   <Check className="w-4 h-4 text-green-500 mr-2" />
                   14-day premium trial
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 text-green-500 mr-2" />
-                  iOS public beta & Android stable release
                 </div>
               </div>
             </div>
@@ -303,53 +211,6 @@ function App() {
               <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
               
               <div className="relative z-10">
-                {/* Story Carousel */}
-                <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-6 mb-6 shadow-2xl border border-gray-200/60" data-aos="fade-left" data-aos-delay="100">
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div>
-                      <span className="inline-flex items-center text-[11px] font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-                        {currentStory.emotion}
-                      </span>
-                      <h3 className="text-2xl font-bold text-gray-900 mt-3">{currentStory.title}</h3>
-                      <p className="text-sm font-medium text-gray-500 mt-1">{currentStory.persona}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        aria-label="Previous story"
-                        onClick={goToPrevStory}
-                        className="p-2 rounded-full bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-all"
-                      >
-                        <ArrowLeft className="w-4 h-4 text-gray-600" />
-                      </button>
-                      <button
-                        aria-label="Next story"
-                        onClick={goToNextStory}
-                        className="p-2 rounded-full bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-all"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gray-600" />
-                      </button>
-                    </div>
-                  </div>
-
-                  <p className="text-base text-gray-700 leading-relaxed mb-4">{currentStory.story}</p>
-                  <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
-                    {currentStory.takeaway}
-                  </div>
-
-                  <div className="flex items-center gap-2 mt-6">
-                    {HERO_STORIES.map((story, index) => (
-                      <button
-                        key={story.id}
-                        aria-label={`Show story ${story.persona}`}
-                        onClick={() => setActiveStory(index)}
-                        className={`flex-1 h-1.5 rounded-full transition-all ${
-                          index === activeStory ? 'bg-blue-600 w-10' : 'bg-gray-200 hover:bg-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-
                 {/* Typing Animation Card */}
                 <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 mb-6 shadow-2xl border border-gray-200/50">
                   <div className="text-center">
@@ -362,62 +223,68 @@ function App() {
                   </div>
                 </div>
                 
-                {/* AI Demo Card */}
+                {/* Features Showcase Card */}
                 <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
                   <div className="flex items-center space-x-4 mb-6">
                     <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-                      <MessageCircle className="w-7 h-7 text-white" />
+                      <MapPin className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-xl text-gray-900">Maya AI Assistant (Upcoming)</div>
-                      <div className="text-gray-500 font-medium">Smart conversation scenarios arriving soon</div>
+                      <div className="font-bold text-xl text-gray-900">Live Status & Location</div>
+                      <div className="text-gray-500 font-medium">See what friends are doing NOW</div>
                     </div>
                   </div>
                   
-                  {/* Chat Interface */}
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 border border-gray-100 max-h-80 overflow-y-auto">
-                    <div className="space-y-4">
-                      {/* User Message */}
-                      <div className="flex justify-end">
-                        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-5 py-3 rounded-2xl rounded-br-md max-w-xs shadow-md">
-                          <div className="text-sm font-medium">Hi Maya! 👋</div>
+                  {/* Status Examples */}
+                  <div className="space-y-3">
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">S</div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900">Sarah</div>
+                          <div className="text-sm text-gray-600">🎬 Watching movie - Until 10 PM</div>
                         </div>
+                        <div className="text-xs text-blue-600 font-medium">500m away</div>
                       </div>
-                      
-                      {/* AI Response */}
-                      <div className="flex justify-start">
-                        <div className="bg-white text-gray-800 px-5 py-3 rounded-2xl rounded-bl-md max-w-xs border border-gray-200 shadow-sm">
-                          <div className="text-sm">Hello! I'm Maya—an upcoming assistant to help you coordinate with your team. What would you like to do?</div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-100">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">M</div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900">Mike</div>
+                          <div className="text-sm text-gray-600">☕ At Starbucks - Free to chat</div>
                         </div>
+                        <div className="text-xs text-green-600 font-medium">200m away</div>
                       </div>
-                      
-                      {/* User Query */}
-                      <div className="flex justify-end">
-                        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-5 py-3 rounded-2xl rounded-br-md max-w-xs shadow-md">
-                          <div className="text-sm font-medium">@sarah free for dinner after her movie?</div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-4 border border-red-100">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">R</div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900">Raj</div>
+                          <div className="text-sm text-gray-600">🚗 Driving - Do not disturb</div>
                         </div>
-                      </div>
-                      
-                      {/* AI Smart Response */}
-                      <div className="flex justify-start">
-                        <div className="bg-white text-gray-800 px-5 py-3 rounded-2xl rounded-bl-md max-w-xs border border-gray-200 shadow-sm">
-                          <div className="text-sm">Sarah's movie ends at 10 PM. She's free after that and loves late-night dining! I'll let her know once Maya launches. 🍽️</div>
-                        </div>
+                        <div className="text-xs text-red-600 font-medium">3km away</div>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Quick Action Buttons */}
-                  <div className="flex gap-2 flex-wrap mt-4">
-                    <button className="text-xs bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 px-4 py-2 rounded-full hover:from-blue-200 hover:to-indigo-200 transition-all duration-200 font-medium shadow-sm">
-                      "Going to airport"
-                    </button>
-                    <button className="text-xs bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 px-4 py-2 rounded-full hover:from-green-200 hover:to-emerald-200 transition-all duration-200 font-medium shadow-sm">
-                      "Movie night plans?"
-                    </button>
-                    <button className="text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 rounded-full hover:from-purple-200 hover:to-pink-200 transition-all duration-200 font-medium shadow-sm">
-                      "Weekend vacation?"
-                    </button>
+                  {/* Quick Stats */}
+                  <div className="grid grid-cols-3 gap-3 mt-6">
+                    <div className="text-center p-3 bg-gray-50 rounded-xl">
+                      <div className="text-2xl font-bold text-blue-600">12</div>
+                      <div className="text-xs text-gray-600">Friends Online</div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 rounded-xl">
+                      <div className="text-2xl font-bold text-green-600">3</div>
+                      <div className="text-xs text-gray-600">Nearby Now</div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 rounded-xl">
+                      <div className="text-2xl font-bold text-purple-600">8</div>
+                      <div className="text-xs text-gray-600">New Stories</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -427,17 +294,10 @@ function App() {
       </section>
 
       <ScenariosSection />
-      <StatusAutomationSection />
-      <LocationIntelligenceSection />
-      <MessagingExperienceSection />
-      <SocialContentSection />
       <InteractiveDemoSection />
       <LiveDashboardDemo />
-      <FeaturesSection />
       <AppShowcaseSection />
-      <TestimonialsSection />
-      <PlatformTrustSection />
-      <UpcomingAISection />
+      <FeaturesSection />
       
       {/* How It Works Section */}
       <section id="how-it-works" className="section-padding bg-gray-50">
@@ -455,7 +315,7 @@ function App() {
             {[
               { icon: Download, title: 'Download & Set Up', description: 'Quick registration with phone verification' },
               { icon: Users, title: 'Connect & Sync', description: 'Import contacts and build your network' },
-              { icon: MessageCircle, title: 'Share & Coordinate', description: 'Set statuses and get ready for Maya AI assistance' },
+              { icon: MessageCircle, title: 'Share & Coordinate', description: 'Set statuses and share your location' },
               { icon: Heart, title: 'Stay In Sync', description: 'Enjoy effortless communication and coordination' }
             ].map((step, index) => (
               <div key={index} className="text-center" data-aos="fade-up" data-aos-delay={index * 100}>
@@ -569,10 +429,10 @@ function App() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Brain, title: 'AI-Powered', description: 'Advanced natural language processing for intelligent responses', delay: 0 },
-              { icon: Zap, title: 'Real-Time', description: 'WebSocket technology for instant updates and notifications', delay: 100 },
-              { icon: Globe, title: 'Cross-Platform', description: 'Available on both iOS and Android with native performance', delay: 200 },
-              { icon: Shield, title: 'Secure', description: 'End-to-end encryption and biometric authentication', delay: 300 }
+              { icon: MapPin, title: 'Location Intelligence', description: 'Real-time location tracking with privacy-first design and beautiful 3D maps', delay: 0 },
+              { icon: Zap, title: 'Real-Time Updates', description: 'WebSocket technology for instant status updates and notifications', delay: 100 },
+              { icon: Globe, title: 'Cross-Platform', description: 'Available on iOS, Android, Web, Desktop, and Wearables', delay: 200 },
+              { icon: Shield, title: 'Privacy & Security', description: 'End-to-end encryption, ghost mode, and granular privacy controls', delay: 300 }
             ].map((tech) => (
               <div
                 key={tech.title}

@@ -14,7 +14,7 @@ const Footer = () => {
               <span className="text-xl font-bold">Syncup</span>
             </div>
             <p className="text-gray-400 mb-2">
-              Revolutionizing communication with AI-powered status sharing and intelligent coordination.
+              Real-time status sharing, location intelligence, and seamless communication for modern life.
             </p>
             <p className="text-sm text-primary-300 font-medium mb-6">
               One Life, One Rhythm, One Sync
@@ -78,7 +78,10 @@ const Footer = () => {
             </div>
           </div>
           <div className="text-center text-gray-400">
-            <p>&copy; 2024 Syncup. All rights reserved. Built with ❤️ for better communication.</p>
+            <p className="mb-3">&copy; 2024 Syncup. All rights reserved. Built with ❤️ for better communication.</p>
+            <p className="text-xs text-gray-500">
+              🤖 AI-powered features coming soon to enhance your coordination experience
+            </p>
           </div>
         </div>
       </div>

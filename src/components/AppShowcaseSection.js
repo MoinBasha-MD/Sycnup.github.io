@@ -10,25 +10,25 @@ const AppShowcaseSection = () => {
     {
       icon: Smartphone,
       name: 'Mobile Apps',
-      description: 'Native Android (stable) and iOS (public beta) with full Syncup feature set.',
+      description: 'Native iOS and Android applications with full feature parity',
       features: ['Push notifications', 'Offline sync', 'Biometric security', 'Location awareness']
     },
     {
-      icon: Globe,
-      name: 'Web Preview',
-      description: 'Responsive web experience in beta for quick access from any modern browser.',
-      features: ['Real-time updates', 'Zero install', 'Works on desktop & tablet', 'Secure login']
+      icon: Monitor,
+      name: 'Desktop',
+      description: 'Powerful desktop applications for Windows, macOS, and Linux',
+      features: ['Multi-window support', 'Keyboard shortcuts', 'System integration', 'High productivity']
     },
     {
-      icon: Monitor,
-      name: 'Desktop Roadmap',
-      description: 'Windows & macOS apps planned with deep OS shortcuts and productivity workflows.',
-      features: ['Multi-window support', 'Keyboard shortcuts', 'System integration', 'Focus modes']
+      icon: Globe,
+      name: 'Web Platform',
+      description: 'Full-featured web application accessible from any browser',
+      features: ['No installation required', 'Cross-browser support', 'Real-time updates', 'Cloud synchronization']
     },
     {
       icon: Watch,
-      name: 'Wearables (Upcoming)',
-      description: 'Apple Watch and WearOS companions for quick glance statuses and nudges.',
+      name: 'Wearables',
+      description: 'Smart watch integration for quick status updates and notifications',
       features: ['Quick replies', 'Status updates', 'Meeting alerts', 'Health integration']
     }
   ];
@@ -36,9 +36,9 @@ const AppShowcaseSection = () => {
   const coreFeatures = [
     {
       icon: MessageCircle,
-      title: 'Intelligent Messaging',
-      description: 'Maya AI (launching soon) will process and prioritize messages based on context, urgency, and your current activity. Whether you\'re in a work meeting or enjoying family time, messages will be handled appropriately.',
-      benefits: ['Context-aware responses', 'Priority filtering', 'Smart scheduling', 'Auto-categorization']
+      title: 'Smart Messaging',
+      description: 'Rich messaging with text, voice notes, files, and more. Disappearing messages, read receipts, and smart notifications keep you connected without overwhelming you.',
+      benefits: ['Rich media support', 'Priority notifications', 'Read receipts', 'Disappearing messages']
     },
     {
       icon: Video,
